@@ -1,0 +1,3 @@
+include ':jvplayer'
+include ':app'
+rootProject.name = "jv_player_sdk"
