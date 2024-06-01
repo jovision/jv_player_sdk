@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 //apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'maven-publish'
 group='com.github.jvplayer'
@@ -8,12 +8,13 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.testgithub"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        ndk {
+            abiFilters 'armeabi', 'arm64-v8a'
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -21,6 +22,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            java {
+                srcDir 'src/main/java'
+            }
         }
     }
 }
